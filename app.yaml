@@ -1,0 +1,4 @@
+# Google Cloud App Engine manifest
+runtime: nodejs14
+instance_class: F1
+service: www
