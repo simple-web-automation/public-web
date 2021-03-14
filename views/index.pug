@@ -1,5 +1,12 @@
-extends layout
+extends ../template/_bootstrap5
+//-  extends ../node_modules/pug-bootstrap/_bootstrap
+//- 
 
-block content
-  h1= title
-  p Welcome to #{title}
+block body
+  +navbar("Simple Web Automation","appnavbar","light","lg")
+    +nav_item("#","active") Home
+    +nav_item("#") Getting started 
+    +nav_item("#") Login
+  +mainbanner("Automation made simple :-)")
+    p.lead.fw-normal Create bots that automate actions over web and mobile applications.
+    +linkbutton("Coming Soon", "#")

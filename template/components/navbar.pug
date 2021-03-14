@@ -1,0 +1,43 @@
+
+mixin navbar(name, id, style, size, href)
+	- var style = (typeof style === 'undefined') ? "default" : style
+	- var href = (typeof href === 'undefined') ? "#" : href
+	- var size = (typeof size === 'undefined') ? "" : "-" + size
+	- var bg = (typeof style === 'undefined') ? "bg-light" : "bg-" + style
+	header.site-header.sticky-top.py-1
+		nav( role="navigation", class=["navbar", "navbar-expand" + size, "navbar-" + style, bg] )
+			.container-fluid
+				a.navbar-brand( href=href )
+					img(src="/images/icon.png",alt=name,width="32",height="32")
+				button.navbar-toggler( type="button", data-bs-toggle="collapse", data-bs-target="#" + id, aria-controls=id, aria-expanded="false", aria-label="Toggle navigation")
+					span.navbar-toggler-icon 
+				.collapse.navbar-collapse( id=id )
+					ul.navbar-nav.mr-auto
+						block
+
+mixin nav_item(href, style, active)
+	- var ddstyle = style || ''
+	- if(!!active && ddstyle.indexOf("active") == -1) ddstyle += (ddstyle.length == 0 ? "active" : " active")
+	li.nav-item 
+		a(class=[ddstyle, "nav-link"], aria-current="page", href=href )
+			block
+
+mixin nav_item_dropdown(href, style, active)
+	- var ddstyle = style || ''
+	- if(ddstyle.indexOf("dropdown") == -1) ddstyle = (ddstyle.length == 0 ? "dropdown" : "dropdown " + ddstyle)
+	- if(!!active && ddstyle.indexOf("active") == -1) ddstyle += " active"
+
+	li(class=ddstyle)
+		a.dropdown-toggle( href=href, data-toggle="dropdown", role="button", aria-expanded="false" )= attributes.label
+			span.caret
+		ul.dropdown-menu( role="menu" )
+				block
+
+mixin nav_divider
+	li.divider
+
+mixin nav_header
+	li.dropdown-header
+		block
+
+//- End navbar mixins
